@@ -1,4 +1,4 @@
-import type { Languages } from "../languages/languages.types"
+import type { Languages } from "../languages/languages.types";
 
 export type Repos = {
     createdAt: string;
