@@ -1,43 +1,9 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import data from "../../data.json";
 import type { Repos } from "../repos/repos.types";
-import Joi from "joi";
-import { describe } from "node:test";
+import { validateData } from "../repos/repos.validation";
 
 const repos = express.Router();
-
-const schema = Joi.object(
-    {
-        createdAt: Joi.string()
-            .pattern(new RegExp('^[0-9\-:A-Z]{20}$'))
-            .required(),
-        description: Joi.string()
-            .allow(''),
-        isPrivate: Joi.boolean(),
-        languages: Joi.array().items(
-            Joi.object({
-                size: Joi.number()
-                    .required(),
-                node: Joi.object({
-                    name : Joi.string()
-                    .required(),
-                })
-            })
-        ),
-        url: Joi.string()
-    }
-);
-
-const validateData = (req : Request, res : Response, next: NextFunction) =>{
-    const { error } = schema.validate(req.body);
-    if(error){
-        res.status(422).json(error);
-    }
-    else
-    {
-        next();
-    }
-};
 
 /** 
  * Je suis sur la route /api/repos
