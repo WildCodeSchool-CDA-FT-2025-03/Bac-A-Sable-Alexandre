@@ -4,10 +4,10 @@ import router from "./router";
 
 const app = express();
 
-const port = process.env.SERVER_PORT;
+const port = process.env.SERVER_PORT || 3000;
 
 app.use('/api', router)
 
-app.listen(port,() => {
+app.listen(port, () => {
     console.info(`Server running on http://localhost:${port}`);
 });

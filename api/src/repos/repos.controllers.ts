@@ -30,7 +30,7 @@ repos.get("/:IdRepo",(req: Request, res: Response) => {
  * On récupère l'url du repo passé en paramètre
  */
 repos.get("/:IdRepo/url",(req: Request, res: Response) => {
-    const reposId = data.find((rep) => rep.id === req.params.IdRepo);
+    const reposId = data.find((rep) => rep.id === req.params.IdRepo) as Repos;
     if(reposId){
         res.status(200).send(reposId.url);
     }
