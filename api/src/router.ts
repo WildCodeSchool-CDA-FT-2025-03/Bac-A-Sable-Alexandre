@@ -7,7 +7,7 @@ const router = express.Router();
  * Je suis sur la route /api
  */
 router.get("/",(_, res: Response) => {
-    res.status(200).send("OK");
+    res.status(200).send("OK !");
 })
 
 router.use("/repos",repos);
