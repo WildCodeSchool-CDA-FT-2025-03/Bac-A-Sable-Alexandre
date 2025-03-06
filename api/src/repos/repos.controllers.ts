@@ -76,9 +76,19 @@ repos.post("/", validateData ,(req: Request, res: Response) => {
 /** 
  * Ajout d'une méthode delete pour supprimer un repo
  */
-repos.delete("/:IdRepo",(_, res: Response) =>{
-    console.log("Hit delete");
+repos.delete("/:IdRepo",(req: Request, res: Response) =>{
+    dataAssign = dataAssign.filter((el) => el.id !== req.params.IdRepo);
     res.sendStatus(204);
-})
+});
+
+repos.delete("/",(req: Request, res: Response) =>{
+    if(req.query.isPrivate){
+        dataAssign = dataAssign.filter((el) => el.isPrivate.toString() !== req.query.isPrivate);
+    }
+    if(req.query.id){
+        dataAssign = dataAssign.filter((el) => el.id.toString() !== req.query.id);
+    }
+    res.sendStatus(204);
+});
 
 export default repos;
