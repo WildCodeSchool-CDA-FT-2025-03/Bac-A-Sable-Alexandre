@@ -9,8 +9,30 @@ const repos = express.Router();
  * Je suis sur la route /api/repos
  * On récupère tous les repos
  */
-repos.get("/",(_, res: Response) => {
-    res.status(200).json(data);
+repos.get("/",(req: Request, res: Response) => {
+    let resultat = data.filter((el) => el.isPrivate.toString() === req.query.isPrivate);
+    
+    if(req.query.limit && +req.query.limit < resultat.length)
+    {
+        resultat = resultat.slice(+req.query.limit);
+    }
+
+    if(req.query.fields){
+        /*
+        Recuperation de colonne a afficher sous forme de tableau
+        */
+        const fields = typeof req.query.fields === "string" ? req.query.fields.split(",") : [];
+
+        /*
+        Map de les resultat pour ne recuperer que les colonnes de fields
+        */
+        resultat = resultat.map((el: Repos) => {
+            const res = fields.reduce((acc, field) => ({...acc, [field]: el[field]}),{});
+            return res;
+        }) as Repos[];
+    }
+
+    res.status(200).json(resultat);
 });
 
 /** 
