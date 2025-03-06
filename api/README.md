@@ -2,6 +2,7 @@
     GET
     - /api/repos/
         * Visu de tous les repos
+        * Gestion des filtres (isPrivate, limite, fields)
     - /api/repos/:IdRepo
         * Visu d'un respo
     - /api/repos/:IdRepo/url
@@ -11,4 +12,8 @@
     - /api/repos/
         * Add new repo
     
-
+    DELETE 
+    - /api/repos/:IdRepo
+        * Suppression d'un repo
+    - /api/repos/?isPrivate=true
+        * Suppression de tous les repos isPrivate
