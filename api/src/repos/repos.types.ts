@@ -7,4 +7,5 @@ export type Repos = {
     isPrivate: boolean;
     languages: Languages[];
     url: string;
+    [key: string]: any;
 };
