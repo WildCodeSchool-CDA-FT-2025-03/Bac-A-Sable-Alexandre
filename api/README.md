@@ -17,3 +17,7 @@
         * Suppression d'un repo
     - /api/repos/?isPrivate=true
         * Suppression de tous les repos isPrivate
+
+    PUT
+    - /api/repos/:IdRepo
+        * Modifier un Repo 

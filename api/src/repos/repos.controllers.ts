@@ -10,7 +10,7 @@ let dataAssign = data;
  * Je suis sur la route /api/repos
  * On récupère tous les repos
  */
-repos.get("/",(req: Request, res: Response) => {
+repos.get("/", (req: Request, res: Response) => {
     let resultat = dataAssign.filter((el) => el.isPrivate.toString() === req.query.isPrivate);
     
     if(req.query.limit && +req.query.limit < resultat.length)
@@ -40,7 +40,7 @@ repos.get("/",(req: Request, res: Response) => {
  * Je suis sur la route /api/repos/IdRepo
  * On récupère tous le repo passé en paramètre
  */
-repos.get("/:IdRepo",(req: Request, res: Response) => {
+repos.get("/:IdRepo", (req: Request, res: Response) => {
     const reposId = dataAssign.find((rep) => rep.id === req.params.IdRepo) as Repos;
     if(reposId){
         res.status(200).json(reposId);
@@ -53,7 +53,7 @@ repos.get("/:IdRepo",(req: Request, res: Response) => {
 /** 
  * On récupère l'url du repo passé en paramètre
  */
-repos.get("/:IdRepo/url",(req: Request, res: Response) => {
+repos.get("/:IdRepo/url", (req: Request, res: Response) => {
     const reposId = dataAssign.find((rep) => rep.id === req.params.IdRepo) as Repos;
     if(reposId){
         res.status(200).send(reposId.url);
@@ -67,7 +67,7 @@ repos.get("/:IdRepo/url",(req: Request, res: Response) => {
  * Ajout d'une méthode post pour ajouter un repo
  * n'est pas ajouter au fichier mais à data
  */
-repos.post("/", validateData ,(req: Request, res: Response) => {
+repos.post("/", validateData , (req: Request, res: Response) => {
     const createdId = Array.from({ length: 10 }, i => [..."abcdefghijklmnopqrsuvwxyz0123456789"][Math.round(Math.ceil(Math.random() * 35))]).join('');
     dataAssign.push({ ...req.body, id: createdId });
     res.status(200).json({ id: createdId });
@@ -76,7 +76,7 @@ repos.post("/", validateData ,(req: Request, res: Response) => {
 /** 
  * Ajout d'une méthode delete pour supprimer un repo
  */
-repos.delete("/:IdRepo",(req: Request, res: Response) =>{
+repos.delete("/:IdRepo", (req: Request, res: Response) =>{
     dataAssign = dataAssign.filter((el) => el.id !== req.params.IdRepo);
     res.sendStatus(204);
 });
@@ -89,6 +89,30 @@ repos.delete("/",(req: Request, res: Response) =>{
         dataAssign = dataAssign.filter((el) => el.id.toString() !== req.query.id);
     }
     res.sendStatus(204);
+});
+
+/** 
+ * Ajout d'une méthode git  pour modifier un repo
+ */
+
+repos.put("/:IdRepo", (req: Request, res: Response) =>{
+    const updatevalue = req.body;
+    let hitIdRepo = false;
+    dataAssign = dataAssign.map(el => {
+        if(el.id === req.params.IdRepo) {
+            hitIdRepo = true;
+            return Object.assign(el,updatevalue);
+        }
+        else {
+            return el;
+        }
+    });
+    if(hitIdRepo){
+        res.sendStatus(204);
+    }
+    else{
+        res.status(404).send("Aucun Repo trouvé !");
+    }
 });
 
 export default repos;
