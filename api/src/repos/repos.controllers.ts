@@ -4,13 +4,14 @@ import type { Repos } from "../repos/repos.types";
 import { validateData } from "../repos/repos.validation";
 
 const repos = express.Router();
+let dataAssign = data;
 
 /** 
  * Je suis sur la route /api/repos
  * On récupère tous les repos
  */
 repos.get("/",(req: Request, res: Response) => {
-    let resultat = data.filter((el) => el.isPrivate.toString() === req.query.isPrivate);
+    let resultat = dataAssign.filter((el) => el.isPrivate.toString() === req.query.isPrivate);
     
     if(req.query.limit && +req.query.limit < resultat.length)
     {
@@ -40,7 +41,7 @@ repos.get("/",(req: Request, res: Response) => {
  * On récupère tous le repo passé en paramètre
  */
 repos.get("/:IdRepo",(req: Request, res: Response) => {
-    const reposId = data.find((rep) => rep.id === req.params.IdRepo) as Repos;
+    const reposId = dataAssign.find((rep) => rep.id === req.params.IdRepo) as Repos;
     if(reposId){
         res.status(200).json(reposId);
     }
@@ -53,7 +54,7 @@ repos.get("/:IdRepo",(req: Request, res: Response) => {
  * On récupère l'url du repo passé en paramètre
  */
 repos.get("/:IdRepo/url",(req: Request, res: Response) => {
-    const reposId = data.find((rep) => rep.id === req.params.IdRepo) as Repos;
+    const reposId = dataAssign.find((rep) => rep.id === req.params.IdRepo) as Repos;
     if(reposId){
         res.status(200).send(reposId.url);
     }
@@ -68,8 +69,16 @@ repos.get("/:IdRepo/url",(req: Request, res: Response) => {
  */
 repos.post("/", validateData ,(req: Request, res: Response) => {
     const createdId = Array.from({ length: 10 }, i => [..."abcdefghijklmnopqrsuvwxyz0123456789"][Math.round(Math.ceil(Math.random() * 35))]).join('');
-    data.push({ ...req.body, id: createdId });
+    dataAssign.push({ ...req.body, id: createdId });
     res.status(200).json({ id: createdId });
 });
+
+/** 
+ * Ajout d'une méthode delete pour supprimer un repo
+ */
+repos.delete("/:IdRepo",(_, res: Response) =>{
+    console.log("Hit delete");
+    res.sendStatus(204);
+})
 
 export default repos;
