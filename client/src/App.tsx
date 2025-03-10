@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import type { Repos } from "./types/repos.types";
+import client from "./services/axios";
 
 function App() {
   const [data, setData] = useState<Repos[]>([]);
 
   useEffect(() => {
     console.log("test");
-    fetch('http://localhost:3000/api/repos/')
-      .then(res => res.json())
-      .then((data) => {
-        setData(data as Repos[]);
-        console.log(data)
-      });
+
+    client
+    .get("/repos")
+    .then((repos) => {
+      setData(repos.data as Repos[]);
+      console.log(data);
+    });
   }, []);
 
   return (
