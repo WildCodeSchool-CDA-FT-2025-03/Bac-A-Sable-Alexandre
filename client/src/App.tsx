@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <h1>Mes Repos</h1>
-      {data.length > 0 && <h2>{data.map((myrepo) => <h2>{myrepo.url}</h2>)}</h2>}
+      {data.length > 0 && <h2>{data.map((myrepo) => <div>{myrepo.url}</div>)}</h2>}
     </>
   )
 }
