@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import type { Repos } from "./types/repos.types";
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Repos[]>([]);
 
   useEffect(() => {
     console.log("test");
     fetch('http://localhost:3000/api/repos/')
       .then(res => res.json())
       .then((data) => {
-        setData(data);
+        setData(data as Repos[]);
         console.log(data)
       });
   }, []);
