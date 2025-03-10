@@ -10,7 +10,6 @@ const useRepos = () => {
             .get("/repos")
             .then((repos) => {
                 setData(repos.data as Repos[]);
-                console.log(data);
             })
             .catch((error) => {
                 console.error(error);
@@ -18,7 +17,6 @@ const useRepos = () => {
     };
 
     useEffect(() => {
-        console.log("test");
         getAllRepos();
     }, []);
 
