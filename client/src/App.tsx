@@ -1,14 +1,23 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState([]);
 
-  
+  useEffect(() => {
+    console.log("test");
+    fetch('http://localhost:3000/api/repos/')
+      .then(res => res.json())
+      .then((data) => {
+        setData(data);
+        console.log(data)
+      });
+  }, []);
 
   return (
     <>
       <h1>Mes Repos</h1>
+      {data.length > 0 && <h2>{data[0].url}</h2>}
     </>
   )
 }
