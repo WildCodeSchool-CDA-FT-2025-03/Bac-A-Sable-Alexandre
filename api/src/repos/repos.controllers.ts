@@ -11,7 +11,9 @@ let dataAssign = data;
  * On récupère tous les repos
  */
 repos.get("/",(req: Request, res: Response) => {
-    let resultat = dataAssign.filter((el) => el.isPrivate.toString() === req.query.isPrivate);
+    let resultat = dataAssign;
+    if(req.query.isPrivate)
+        resultat = resultat.filter((el) => el.isPrivate.toString() === req.query.isPrivate);
     
     if(req.query.limit && +req.query.limit < resultat.length)
     {
