@@ -13,11 +13,13 @@ let dataAssign = data;
 repos.get("/",(req: Request, res: Response) => {
     let resultat = dataAssign;
     if(req.query.isPrivate)
+    {
         resultat = resultat.filter((el) => el.isPrivate.toString() === req.query.isPrivate);
-    
+    }
+
     if(req.query.limit && +req.query.limit < resultat.length)
     {
-        resultat = resultat.slice(+req.query.limit);
+        resultat = resultat.slice(resultat.length - +req.query.limit);
     }
 
     if(req.query.fields){

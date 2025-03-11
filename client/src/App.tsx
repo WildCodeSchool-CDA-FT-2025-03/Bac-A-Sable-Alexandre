@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <header>Navbar</header>
-      <Outlet></Outlet>
+      <Outlet />
       <footer>Pied de page</footer>
     </>
   )

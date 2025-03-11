@@ -5,14 +5,16 @@ import client from "../services/axios";
 const useRepos = () => {
     const [data, setData] = useState<Repos[]>([]);
     const [dataMyRepo, setMyRepo] = useState<Repos>();
-    console.log('useRepos');
-    const getAllRepos = () => {
+    const [error, setError] = useState(false);
+    
+    const getAllRepos = (limit: string, isPrivate: string) => {
         client
-            .get("/repos")
+            .get(`/repos?limit=${limit}&isPrivate=${isPrivate}`)
             .then((repos) => {
                 setData(repos.data as Repos[]);
             })
             .catch((error) => {
+                setError(true);
                 console.error(error);
             });
     };
@@ -24,11 +26,12 @@ const useRepos = () => {
                 setMyRepo(repos.data as Repos);
             })
             .catch((error) => {
+                setError(true);
                 console.error(error);
             });
     };
 
-    return { data, dataMyRepo, getMyRepos, getAllRepos };
+    return { data, dataMyRepo, getMyRepos, getAllRepos, error };
 }
 
 export default useRepos;

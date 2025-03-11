@@ -1,14 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import useRepos from "../services/useRepos";
 import { useEffect } from "react";
 
 export default function MyRepo(){
     const { id } = useParams();
-    const { dataMyRepo, getMyRepos } = useRepos();
+    const { dataMyRepo, getMyRepos, error } = useRepos();
 
     useEffect(() => {
         getMyRepos(id as string);
-    }, []);
+    }, [id]);
+
+    if (error) {
+        return <Navigate to="/Error" replace />;
+    }
 
     return (
         <div>

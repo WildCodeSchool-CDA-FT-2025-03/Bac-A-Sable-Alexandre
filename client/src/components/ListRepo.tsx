@@ -8,8 +8,10 @@ type Props = {
 function ListRepo({repo} : Props){
     return (
         <>
-        <div> - {repo.url}</div>
-        <Link to={`/repos/${repo.id}`}>{repo.id}</Link>
+        <div className="reposInfo">
+            <div className="reposID"><Link to={`/repos/${repo.id}`}>ID : {repo.id}</Link></div>
+            <div className="reposURL">{repo.url}</div>
+        </div>
         </>
     );
 };
