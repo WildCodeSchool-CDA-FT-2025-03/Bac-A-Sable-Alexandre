@@ -1,8 +1,13 @@
 import useRepos from "../services/useRepos";
 import ListRepo from "../components/ListRepo";
+import { useEffect } from "react";
 
 function Home(){
-    const { data } = useRepos();
+    const { data, getAllRepos } = useRepos();
+
+    useEffect(() => {
+        getAllRepos();
+    }, []);
 
     return (
         <>

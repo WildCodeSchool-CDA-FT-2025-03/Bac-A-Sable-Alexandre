@@ -13,6 +13,11 @@ const router = createBrowserRouter([{
     {
       path: "",
       element: <Home />
+      /*loader: async () => {
+        const result = await client.get("/repos");
+        console.log("Result", result);
+        return result;
+      },*/
     },
     {
       path: '/repos/:id',

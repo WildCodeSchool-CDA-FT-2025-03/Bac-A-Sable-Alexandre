@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { Repos } from "../types/repos.types";
 import client from "../services/axios";
 
 const useRepos = () => {
     const [data, setData] = useState<Repos[]>([]);
     const [dataMyRepo, setMyRepo] = useState<Repos>();
-
+    console.log('useRepos');
     const getAllRepos = () => {
         client
             .get("/repos")
@@ -28,11 +28,7 @@ const useRepos = () => {
             });
     };
 
-    useEffect(() => {
-        getAllRepos();
-    }, []);
-
-    return { data, dataMyRepo, getMyRepos };
+    return { data, dataMyRepo, getMyRepos, getAllRepos };
 }
 
 export default useRepos;
