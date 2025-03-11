@@ -5,7 +5,7 @@ import client from "../services/axios";
 const useRepos = () => {
     const [data, setData] = useState<Repos[]>([]);
     const [dataMyRepo, setMyRepo] = useState<Repos>();
-    console.log('useRepos');
+    
     const getAllRepos = (limit: string, isPrivate: string) => {
         client
             .get(`/repos?limit=${limit}&isPrivate=${isPrivate}`)

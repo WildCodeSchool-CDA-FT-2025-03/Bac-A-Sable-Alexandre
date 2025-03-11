@@ -8,7 +8,7 @@ export default function MyRepo(){
 
     useEffect(() => {
         getMyRepos(id as string);
-    }, []);
+    }, [id]);
 
     return (
         <div>
