@@ -28,11 +28,11 @@ function Home(){
         </label>
         <label>
             Privé
-            <input type="radio" value="true" name="isPrivate" onClick={(e) => setSearchParams(searchParams => {
+            <input type="radio" value="true" name="isPrivate" checked={searchParams.get("isPrivate") === "true"} onClick={(e) => setSearchParams(searchParams => {
                 searchParams.set("isPrivate", e.currentTarget.value);
                 return searchParams;
                 })} /> Oui
-            <input type="radio" value="false" name="isPrivate"onClick={(e) => setSearchParams(searchParams => {
+            <input type="radio" value="false" name="isPrivate" checked={(searchParams.get("isPrivate") === "false" || !searchParams.get("isPrivate"))} onClick={(e) => setSearchParams(searchParams => {
                 searchParams.set("isPrivate", e.currentTarget.value);
                 return searchParams;
                 })} /> Non
