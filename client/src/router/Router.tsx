@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import App from '../App.tsx';
 import MyRepo from "../pages/MyRepo.tsx";
 import Home from "../pages/Home.tsx";
+import Error from "../pages/Error.tsx"
 
 
 const router = createBrowserRouter([{
@@ -23,6 +24,10 @@ const router = createBrowserRouter([{
       }
     ]
   },
+  {
+    path: '/Error',
+    element : <Error />,
+  }
   ]);
 
   export default router;

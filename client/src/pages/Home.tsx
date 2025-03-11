@@ -1,15 +1,19 @@
 import useRepos from "../services/useRepos";
 import ListRepo from "../components/ListRepo";
 import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom"
+import { Navigate, useSearchParams } from "react-router-dom"
 
 function Home(){
-    const { data, getAllRepos } = useRepos();
+    const { data, getAllRepos, error } = useRepos();
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         getAllRepos(searchParams.get("limit") || "10", searchParams.get("isPrivate") || "false");
     }, [searchParams]);
+
+    if (error) {
+        return <Navigate to="/Error" replace />;
+    }
 
     return (
         <>
