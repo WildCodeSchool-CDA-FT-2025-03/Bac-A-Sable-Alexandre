@@ -6,9 +6,9 @@ const useRepos = () => {
     const [data, setData] = useState<Repos[]>([]);
     const [dataMyRepo, setMyRepo] = useState<Repos>();
     console.log('useRepos');
-    const getAllRepos = () => {
+    const getAllRepos = (limit: string, isPrivate: string) => {
         client
-            .get("/repos")
+            .get(`/repos?limit=${limit}&isPrivate=${isPrivate}`)
             .then((repos) => {
                 setData(repos.data as Repos[]);
             })
