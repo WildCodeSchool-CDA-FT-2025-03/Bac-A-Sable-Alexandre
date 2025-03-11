@@ -54,6 +54,17 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+header{
+  background-color: #535bf2;
+  margin: 10px 0;
+  color: #ffffff;
+}
+footer{
+  background-color: #28866a;
+  margin: 10px 0;
+  color: #ffffff;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
