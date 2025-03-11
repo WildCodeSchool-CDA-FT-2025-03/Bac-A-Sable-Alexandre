@@ -1,4 +1,5 @@
 import useRepos from "./services/useRepos";
+import ListRepo from "./components/ListRepo"
 import "./App.css";
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
   return (
     <>
       <h1>Mes Repos</h1>
-      {data.length > 0 && <h2>{data.map((myrepo) => <div>{myrepo.url}</div>)}</h2>}
+      {data.map((myrepo) => (
+        <ListRepo repo={myrepo} />
+      ))}
     </>
   )
 }
