@@ -15,7 +15,7 @@ function Home(){
         <>
         <h1>Mes Repos</h1>
         <label>
-            Nombre de Repos 
+            Nombre de Repos&nbsp;
             <select name="limit" value={searchParams.get("limit") || "10"} onChange={(e) => setSearchParams(searchParams => {
                 searchParams.set("limit", e.target.value);
                 return searchParams;
@@ -37,9 +37,11 @@ function Home(){
                 return searchParams;
                 })} /> Non
         </label>
-        {data.map((myrepo) => (
-            <ListRepo repo={myrepo} />
-        ))}
+        <div className="reposList">
+            {data.map((myrepo) => (
+                <ListRepo repo={myrepo} />
+            ))}
+        </div>
         </>
     )
 };
