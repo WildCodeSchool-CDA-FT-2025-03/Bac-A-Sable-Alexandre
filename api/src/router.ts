@@ -1,5 +1,6 @@
 import express, { Response } from "express";
 import repos from "./repos/repos.controllers";
+import languages from "./languages/languages.controllers"
 
 const router = express.Router();
 
@@ -11,5 +12,6 @@ router.get("/",(_, res: Response) => {
 })
 
 router.use("/repos",repos);
+router.use("/languages",languages);
 
 export default router;
