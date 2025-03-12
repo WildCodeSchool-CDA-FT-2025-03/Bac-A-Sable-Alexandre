@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Repos } from "../types/repos.types";
+import InputForm from "../components/forms/inputForm.tsx";
 
 const initRepo = {
     description: "",
@@ -24,14 +25,8 @@ function RepoForm(){
     return (
         <form>
             <h1>Ajout d'un nouveau Repo</h1>
-            <label>
-                Description du Repo
-                <input type="text" name="description" value={newRepo?.description} onChange={HandleAddRepo} />    
-            </label>
-            <label>
-                URL du Repo
-                <input type="text" name="url" value={newRepo?.url} onChange={HandleAddRepo} />    
-            </label>
+            <InputForm	title="Description du Repo" name="description" value={newRepo.description} handle={HandleAddRepo} />
+            <InputForm	title="URL du Repo" name="url" value={newRepo.url} handle={HandleAddRepo} />
         </form>
     )
 };
