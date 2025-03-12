@@ -28,6 +28,11 @@ const router = createBrowserRouter([{
         path: '/repos/create',
         element : <RepoForm />
       }
+      ,
+      {
+        path: '/languages',
+        element : <RepoForm />
+      }
     ]
   },
   {
