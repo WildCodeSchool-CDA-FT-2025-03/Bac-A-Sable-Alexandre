@@ -71,3 +71,19 @@
 .reposID a{
   color:white;
 }
+
+button[type=submit] {
+  background-color: #585858;
+  color: white;
+  padding:5px 15px;
+  margin: 7px 0;
+}
+
+div.formElement {
+  display: flex;
+  margin: 5px 0;
+}
+
+div.formElement select,div.formElement input{
+  margin: 0 0 0 10px;
+}

@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import client from "../services/axios";
 
+/**
+ * Récupère tous les languages des Repos
+ * @returns Tous les languages
+ */
 const useLanguages = () => {
     const [languages, setLanguages] = useState<string[]>([]);
     

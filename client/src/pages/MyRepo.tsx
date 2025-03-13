@@ -2,6 +2,12 @@ import { useParams, Navigate } from "react-router-dom";
 import useRepos from "../services/useRepos";
 import { useEffect } from "react";
 
+/**
+ * Page affichage d'un repo
+ * useParams -> Utilisation des paramètres pour recuperer l'id
+ * useRepos -> Va chercher le Repos
+ * @returns Repo selectionné
+ */
 export default function MyRepo(){
     const { id } = useParams();
     const { dataMyRepo, getMyRepos, error } = useRepos();

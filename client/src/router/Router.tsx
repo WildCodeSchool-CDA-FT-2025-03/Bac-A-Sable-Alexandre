@@ -5,7 +5,9 @@ import Home from "../pages/Home.tsx";
 import Error from "../pages/Error.tsx";
 import RepoForm from "../pages/RepoForm.tsx";
 
-
+/**
+ * Toutes les routes de mon appli
+ */
 const router = createBrowserRouter([{
     path: '/',
     element : <App />,

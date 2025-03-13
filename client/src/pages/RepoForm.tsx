@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { Repos } from "../types/repos.types";
 import InputForm from "../components/forms/inputForm.tsx";
 import CheckboxForm from "../components/forms/CheckboxForm.tsx";
-import SelectLanguagesForm from "../components/forms/selectLanguagesForm.tsx";
+import SelectLanguagesForm from "../components/forms/SelectLanguagesForm.tsx";
 import useRepos from "../services/useRepos.ts";
 
 const initRepo = {
@@ -17,10 +17,14 @@ const initRepo = {
     url: ''
 };
 
+/**
+ * Page formulaire pour  créer un nouveau Repo
+ * useState -> Pour gérer la valeur de chaque élément de mon formulaire
+ * useRepos -> Pour envoyer le repo a ajouter
+ */
 function RepoForm(){
     const [newRepo,setNewRepo] = useState<Repos>(initRepo);
 		const { addOneRepos } = useRepos();
-    console.log(newRepo);
 
     const HandleAddRepo = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
 			if(e.target.name === "languages")
@@ -53,10 +57,10 @@ function RepoForm(){
     return (
         <form onSubmit={handleSubmitRepo}>
             <h1>Ajout d'un nouveau Repo</h1>
-            <InputForm	title="Description du Repo" name="description" value={newRepo.description} handle={HandleAddRepo} />
-            <InputForm	title="URL du Repo" name="url" value={newRepo.url} handle={HandleAddRepo} />
-						<SelectLanguagesForm value={newRepo.languages[0].node.name} handle={HandleAddRepo} />
-						<CheckboxForm	title="Privé ?" name="isPrivate" value={newRepo.isPrivate} handle={HandleAddRepo} />
+            <div className="formElement"><InputForm	title="Description du Repo" name="description" value={newRepo.description} handle={HandleAddRepo} /></div>
+            <div className="formElement"><InputForm	title="URL du Repo" name="url" value={newRepo.url} handle={HandleAddRepo} /></div>
+						<div className="formElement"><SelectLanguagesForm value={newRepo.languages[0].node.name} handle={HandleAddRepo} /></div>
+						<div className="formElement"><CheckboxForm	title="Privé ?" name="isPrivate" value={newRepo.isPrivate} handle={HandleAddRepo} /></div>
 						<button type="submit">Ajouter</button>
         </form>
     )

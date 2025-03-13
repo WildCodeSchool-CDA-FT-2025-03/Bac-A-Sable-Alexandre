@@ -3,6 +3,12 @@ import ListRepo from "../components/ListRepo";
 import { useEffect } from "react";
 import { Navigate, useSearchParams } from "react-router-dom"
 
+/**
+ * Page principale. Affichage de tous les Repos avec gestion de quelques paramètres
+ * useRepos -> Va chercher la liste des Repos
+ * useSearchParams -> Utilisation des paramètres
+ * @returns Liste de tous les repos
+ */
 function Home(){
     const { data, getAllRepos, error } = useRepos();
     const [searchParams, setSearchParams] = useSearchParams();

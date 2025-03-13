@@ -5,6 +5,10 @@ type Props = {
     repo: Repos,
 }
 
+/**
+ * Affichage du Repo
+ * repo : Information complète du repo a afficher
+ */
 function ListRepo({repo} : Props){
     return (
         <>
