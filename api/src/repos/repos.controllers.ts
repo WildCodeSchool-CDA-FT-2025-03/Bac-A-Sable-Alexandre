@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import data from "../../data.json";
-import type { Repos } from "../repos/repos.types";
+import type { Repos } from "../types/repos.types";
 import { validateData } from "../repos/repos.validation";
 
 const repos = express.Router();
@@ -72,8 +72,12 @@ repos.get("/:IdRepo/url",(req: Request, res: Response) => {
  * n'est pas ajouter au fichier mais à data
  */
 repos.post("/", validateData ,(req: Request, res: Response) => {
+
+    const d = new Date().toISOString().split('.')[0] + 'Z';
+
     const createdId = Array.from({ length: 10 }, i => [..."abcdefghijklmnopqrsuvwxyz0123456789"][Math.round(Math.ceil(Math.random() * 35))]).join('');
-    dataAssign.push({ ...req.body, id: createdId });
+    dataAssign.push({ ...req.body, id: createdId, createdAt: d });
+
     res.status(200).json({ id: createdId });
 });
 

@@ -4,8 +4,7 @@ import Joi from "joi";
 const schema = Joi.object(
     {
         createdAt: Joi.string()
-            .pattern(new RegExp('^[0-9\-:A-Z]{20}$'))
-            .required(),
+            .pattern(new RegExp('^([0-9\-:A-Z]{0})|([0-9\-:A-Z]{20})$')),
         description: Joi.string()
             .allow(''),
         isPrivate: Joi.boolean(),
