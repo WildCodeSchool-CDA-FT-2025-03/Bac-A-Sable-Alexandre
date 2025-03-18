@@ -9,23 +9,23 @@ import { useEffect } from "react";
  * @returns Repo selectionné
  */
 export default function MyRepo(){
-    const { id } = useParams();
-    const { dataMyRepo, getMyRepos, error } = useRepos();
+  const { id } = useParams();
+  const { dataMyRepo, getMyRepos, error } = useRepos();
 
-    useEffect(() => {
-        getMyRepos(id as string);
-    }, [id]);
+  useEffect(() => {
+    getMyRepos(id as string);
+  }, [id]);
 
-    if (error) {
-        return <Navigate to="/Error" replace />;
-    }
+  if (error) {
+    return <Navigate to="/Error" replace />;
+  }
 
-    return (
-        <div>
-          <h1>My Repo : {id}</h1>
-          {dataMyRepo && dataMyRepo.languages.map((myrepo) => (
-            <div>{myrepo.node.name}</div>
-          ))}
-        </div>
-      )
+  return (
+    <div>
+      <h1>My Repo : {id}</h1>
+      {dataMyRepo && dataMyRepo.languages.map((myrepo) => (
+        <div>{myrepo.node.name}</div>
+      ))}
+    </div>
+  )
 };
