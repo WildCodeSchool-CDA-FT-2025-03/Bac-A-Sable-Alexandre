@@ -5,7 +5,7 @@ type CheckboxFormProps = {
   name: string;
   value: boolean;
   handle: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+};
 
 /**
  * Element Checkbox du Formulaire
@@ -14,11 +14,11 @@ type CheckboxFormProps = {
  * value : valeur courante
  * handle : hook a appeler sur l'evenement
  */
-function CheckboxForm({title, name, value, handle} : CheckboxFormProps) {
+function CheckboxForm({ title, name, value, handle }: CheckboxFormProps) {
   return (
     <label>
       {title}
-      <input type="checkbox" name={name} checked={value} onChange={handle} /> 
+      <input type="checkbox" name={name} checked={value} onChange={handle} />
     </label>
   );
 }

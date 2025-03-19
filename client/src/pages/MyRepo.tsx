@@ -8,12 +8,13 @@ import { useEffect } from "react";
  * useRepos -> Va chercher le Repos
  * @returns Repo selectionné
  */
-export default function MyRepo(){
+export default function MyRepo() {
   const { id } = useParams();
   const { dataMyRepo, getMyRepos, error } = useRepos();
 
   useEffect(() => {
     getMyRepos(id as string);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   if (error) {
@@ -23,9 +24,8 @@ export default function MyRepo(){
   return (
     <div>
       <h1>My Repo : {id}</h1>
-      {dataMyRepo && dataMyRepo.languages.map((myrepo) => (
-        <div>{myrepo.node.name}</div>
-      ))}
+      {dataMyRepo &&
+        dataMyRepo.languages.map((myrepo) => <div>{myrepo.node.name}</div>)}
     </div>
-  )
-};
+  );
+}

@@ -1,4 +1,4 @@
 export type Languages = {
   size: number;
-  node: { name : string };
+  node: { name: string };
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import client from "../services/axios";
 
 /**
@@ -18,7 +18,7 @@ const useLanguages = () => {
       });
   };
 
-  return { languages, getAllLanguages};
-}
+  return { languages, getAllLanguages };
+};
 
 export default useLanguages;
