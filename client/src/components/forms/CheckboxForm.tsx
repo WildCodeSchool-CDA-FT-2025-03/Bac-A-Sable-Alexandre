@@ -1,10 +1,10 @@
 import React from "react";
 
 type CheckboxFormProps = {
-    title: string;
-    name: string;
-    value: boolean;
-    handle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  title: string;
+  name: string;
+  value: boolean;
+  handle: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -15,12 +15,12 @@ type CheckboxFormProps = {
  * handle : hook a appeler sur l'evenement
  */
 function CheckboxForm({title, name, value, handle} : CheckboxFormProps) {
-    return (
-        <label>
-            {title}
-            <input type="checkbox" name={name} checked={value} onChange={handle} /> 
-        </label>
-    );
+  return (
+    <label>
+      {title}
+      <input type="checkbox" name={name} checked={value} onChange={handle} /> 
+    </label>
+  );
 }
 
 export default CheckboxForm;

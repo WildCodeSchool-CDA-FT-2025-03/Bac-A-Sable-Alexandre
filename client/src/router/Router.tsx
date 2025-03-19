@@ -8,7 +8,8 @@ import RepoForm from "../pages/RepoForm.tsx";
 /**
  * Toutes les routes de mon appli
  */
-const router = createBrowserRouter([{
+const router = createBrowserRouter([
+  {
     path: '/',
     element : <App />,
     children:[
@@ -41,6 +42,6 @@ const router = createBrowserRouter([{
     path: '/Error',
     element : <Error />,
   }
-  ]);
+]);
 
-  export default router;
+export default router;

@@ -1,10 +1,10 @@
 import React from "react";
 
 type inputFormProps = {
-    title: string;
-    name: string;
-    value: string;
-    handle: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  title: string;
+  name: string;
+  value: string;
+  handle: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 /**
@@ -15,12 +15,12 @@ type inputFormProps = {
  * handle : hook a appeler sur l'evenement
  */
 function InputForm({title, name, value, handle} : inputFormProps) {
-    return (
-        <label>
-            {title}
-            <input type="text" name={name} value={value} onChange={handle} /> 
-        </label>
-    );
+  return (
+    <label>
+      {title}
+      <input type="text" name={name} value={value} onChange={handle} /> 
+    </label>
+  );
 }
 
 export default InputForm;

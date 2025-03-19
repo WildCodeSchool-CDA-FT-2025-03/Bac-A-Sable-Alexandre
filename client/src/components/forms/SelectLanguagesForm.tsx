@@ -19,17 +19,17 @@ function SelectLanguagesForm({value, handle} : SelectLanguageFormProps) {
   },[]) ;
 
   return (
-      <label>
-          Choisir mon lmanguage
-          <select name="languages" value={value} onChange={handle} required>
-            <option value="">Choix</option>
-            {
-              languages.map((langue) => (
-                <option value={langue}>{langue}</option>
-              ))
-            }
-          </select>
-      </label>
+    <label>
+      Choisir mon lmanguage
+      <select name="languages" value={value} onChange={handle} required>
+        <option value="">Choix</option>
+        {
+          languages.map((langue) => (
+            <option value={langue}>{langue}</option>
+          ))
+        }
+      </select>
+    </label>
   );
 }
 
