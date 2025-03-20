@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Repos } from "../types/repos.types";
+import type { Languages } from "../types/languages.types.ts";
 import InputForm from "../components/forms/inputForm.tsx";
 import CheckboxForm from "../components/forms/CheckboxForm.tsx";
 import SelectLanguagesForm from "../components/forms/SelectLanguagesForm.tsx";
@@ -30,18 +31,38 @@ function RepoForm() {
   const HandleAddRepo = (
     e:
       | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLSelectElement>,
+    index?: number
   ) => {
-    if (e.target.name === "languages") {
+    if (e.target.name === "languages" && index !== undefined) {
+      const newLanguages: Languages[] = newRepo.languages;
+      newLanguages[index].node.name = e.target.value;
       setNewRepo(() => ({
         ...newRepo,
-        languages: [{ size: 0, node: { name: e.target.value } }],
+        languages: newLanguages,
+      }));
+    }
+    else if (e.target.name === "size" && index !== undefined) {
+      const newLanguages: Languages[] = newRepo.languages;
+      newLanguages[index].size = Number(e.target.value);
+      setNewRepo(() => ({
+        ...newRepo,
+        languages: newLanguages,
       }));
     } else if (e.target.name === "isPrivate") {
       setNewRepo(() => ({ ...newRepo, [e.target.name]: !newRepo.isPrivate }));
     } else {
       setNewRepo(() => ({ ...newRepo, [e.target.name]: e.target.value }));
     }
+  };
+
+  const handleAddClickRoom = () => {
+    const newLanguages : Languages[] = newRepo.languages;
+    newLanguages.push({ size: 0, node: { name: "" } });
+    setNewRepo(() => ({
+      ...newRepo,
+      languages: newLanguages
+    }));
   };
 
   const handleSubmitRepo = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,10 +99,18 @@ function RepoForm() {
           />
         </div>
         <div className="formElement">
-          <SelectLanguagesForm
-            value={newRepo.languages[0].node.name}
-            handle={HandleAddRepo}
-          />
+          Choisir mon language
+          {newRepo.languages.map((listeSelect, i) => (
+            <div className="selectLanguage">
+              <SelectLanguagesForm
+                value={listeSelect.node.name}
+                valuesize={listeSelect.size}
+                handle={HandleAddRepo}
+                index={i}
+              />
+            </div>
+          ))}
+          <button className="buttonPlus" type="button" onClick={()=> handleAddClickRoom()}> + Ajouter un language</button>
         </div>
         <div className="formElement">
           <CheckboxForm
