@@ -2,6 +2,8 @@ import useRepos from "../services/useRepos";
 import ListRepo from "../components/ListRepo";
 import { useEffect } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
+import SelectForm from "../components/forms/SelectForm";
+import SelectInputRadio from "../components/forms/InputRadio";
 
 /**
  * Page principale. Affichage de tous les Repos avec gestion de quelques paramètres
@@ -25,58 +27,58 @@ function Home() {
     return <Navigate to="/Error" replace />;
   }
 
+  const HandleAllRepo = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    if (e.target.name === "isPrivate") {
+      setSearchParams((searchParams) => {
+        searchParams.set("isPrivate", e.currentTarget.value);
+        return searchParams;
+      })
+    }
+    else
+    {
+      setSearchParams((searchParams) => {
+        searchParams.set("limit", e.target.value);
+        return searchParams;
+      })
+    }
+  };
+
   return (
     <>
       <h1>Mes Repos</h1>
       <label>
-        Nombre de Repos&nbsp;
-        <select
+        <SelectForm
           name="limit"
           value={searchParams.get("limit") || "10"}
-          onChange={(e) =>
-            setSearchParams((searchParams) => {
-              searchParams.set("limit", e.target.value);
-              return searchParams;
-            })
-          }
-        >
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="10">10</option>
-        </select>
+          title="Nombre de Repos"
+          option={["2", "3", "10"]}
+          handle={HandleAllRepo}
+        />
       </label>
-      <label>
+      <div className="input-group">
         Privé
-        <input
-          type="radio"
-          value="true"
+        <SelectInputRadio
           name="isPrivate"
-          checked={searchParams.get("isPrivate") === "true"}
-          onClick={(e) =>
-            setSearchParams((searchParams) => {
-              searchParams.set("isPrivate", e.currentTarget.value);
-              return searchParams;
-            })
-          }
-        />{" "}
-        Oui
-        <input
-          type="radio"
-          value="false"
-          name="isPrivate"
-          checked={
-            searchParams.get("isPrivate") === "false" ||
-            !searchParams.get("isPrivate")
-          }
-          onClick={(e) =>
-            setSearchParams((searchParams) => {
-              searchParams.set("isPrivate", e.currentTarget.value);
-              return searchParams;
-            })
-          }
-        />{" "}
-        Non
-      </label>
+          option={[
+            {
+              id:"isPrivateOui",
+              value:"true",
+              textLabel:"Oui"
+            },
+            {
+              id:"isPrivateNon",
+              value:"false",
+              textLabel:"Non"
+            }
+          ]}
+          value={searchParams.get("isPrivate") || "false"}
+          handle={HandleAllRepo}
+          />
+      </div>
       <div className="reposList">
         {data.map((myrepo) => (
           <ListRepo repo={myrepo} />
