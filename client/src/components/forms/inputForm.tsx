@@ -21,6 +21,6 @@ function InputForm({ title, name, value, handle }: inputFormProps) {
       <input type="text" name={name} value={value} onChange={handle} />
     </label>
   );
-}
+} 
 
 export default InputForm;

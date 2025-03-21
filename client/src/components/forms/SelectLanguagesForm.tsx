@@ -36,6 +36,6 @@ function SelectLanguagesForm({ value, valuesize, index, handle }: SelectLanguage
       <InputForm title="Taille" name="size" value={valuesize.toString()} handle={(e) => handle(e, index)} />
     </>
   );
-}
+} 
 
 export default SelectLanguagesForm;
