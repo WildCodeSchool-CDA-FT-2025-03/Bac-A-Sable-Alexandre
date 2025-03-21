@@ -3,6 +3,8 @@
   margin: 0 auto;
   text-align: center;
   width: 800px;
+  position: relative;
+  padding: 0 0 50px 0;
 }
 
 .logo {
@@ -53,7 +55,7 @@
 {
   font-size: 0.8rem;
   border: solid 1px #000;
-  margin:2px;
+  margin:7px 2px;
   width: 300px;
 }
 
@@ -66,6 +68,8 @@
 .reposURL
 {
   padding: 10px 5px;
+  background-color: white;
+  color: #333;
 }
 
 .reposID a{
@@ -86,4 +90,142 @@ div.formElement {
 
 div.formElement select,div.formElement input{
   margin: 0 0 0 10px;
+}
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/* On modernise notre balise de navigation avec une petite ombre. On mets tous les éléments du menu les uns bien à côté des autres avec flexbox (display: flex) */
+nav {
+  background-color: #fff;
+  padding: 0 20px;
+  border-radius: 40px;
+  box-shadow: 0 10px 40px rgba(159, 162, 177, .8);
+  display: flex;
+  overflow: hidden;
+  overflow-x: auto;
+  position: relative;
+}
+
+/* On stylise chaque élément */
+.nav-item {
+  color: #83818c;
+  font-family: arial, sans-serif;
+  padding: 20px;
+  margin: 0 6px;
+  position: relative;
+}
+
+/* Ici on met juste un petit élément avant chaque élément pour le rendre plus beau visuellement */
+.nav-item:before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  background-color: #dfe2ea;
+  height: 5px;
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+  left: 0;
+  transition: .3s;
+}
+
+/* Avec les dernières nouveautés de CSS, on peut changer les propriétés des éléments selon des conditions avec not */
+.nav-item:not(.is-active):hover:before {
+  bottom: 0;
+}
+.nav-item:not(.is-active):hover {
+  color: #333;
+}
+
+/* Stylisons notre indicateur */
+.nav-indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 5px;
+  transition: .4s;
+  border-radius: 8px 8px 0 0;
+}
+
+.TitreSite
+{
+  font-size: 2em;
+  margin: 20px 0;
+}
+
+form
+{
+  padding: 20px 40px;
+  line-height: 3.1em;
+}
+
+
+
+
+
+
+
+.input-group {
+  margin-bottom: 1em;
+  zoom: 1;
+  padding: 0 0 0 10px;
+  display: inline-block;
+}
+.input-group:before,
+.input-group:after {
+  content: "";
+  display: table;
+}
+.input-group:after {
+  clear: both;
+}
+
+.input-group-icon input {
+  padding-left: 4.4em;
+}
+
+.input-group-icon .input-icon i {
+  -webkit-transition: 0.35s ease-in-out;
+  -moz-transition: 0.35s ease-in-out;
+  -o-transition: 0.35s ease-in-out;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+input[type="radio"] + label,
+input[type="checkbox"] + label:before {
+  padding: 2px 5px;
+  margin:0px 5px;
+  line-height: 1.4;
+  background-color: #ffffff;
+  color:#333;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  -webkit-transition: 0.35s ease-in-out;
+  -moz-transition: 0.35s ease-in-out;
+  -o-transition: 0.35s ease-in-out;
+  transition: 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  display: inline-block;
+  text-align: center;
+  float: right;
+}
+
+input[type="radio"] + label i {
+  padding-right: 0.4em;
+}
+input[type="radio"]:checked + label,
+input:checked + label:before {
+  background-color: #f0a500;
+  color: #000000;
+  border-color: #bd8200;
 }

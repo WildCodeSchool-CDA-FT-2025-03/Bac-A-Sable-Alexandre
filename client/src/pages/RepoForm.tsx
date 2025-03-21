@@ -57,41 +57,43 @@ function RepoForm() {
   };
 
   return (
-    <form onSubmit={handleSubmitRepo}>
+    <>
       <h1>Ajout d'un nouveau Repo</h1>
-      {msg}
-      <div className="formElement">
-        <InputForm
-          title="Description du Repo"
-          name="description"
-          value={newRepo.description}
-          handle={HandleAddRepo}
-        />
-      </div>
-      <div className="formElement">
-        <InputForm
-          title="URL du Repo"
-          name="url"
-          value={newRepo.url}
-          handle={HandleAddRepo}
-        />
-      </div>
-      <div className="formElement">
-        <SelectLanguagesForm
-          value={newRepo.languages[0].node.name}
-          handle={HandleAddRepo}
-        />
-      </div>
-      <div className="formElement">
-        <CheckboxForm
-          title="Privé ?"
-          name="isPrivate"
-          value={newRepo.isPrivate}
-          handle={HandleAddRepo}
-        />
-      </div>
-      <button type="submit">Ajouter</button>
-    </form>
+      <form onSubmit={handleSubmitRepo}>
+        {msg}
+        <div className="formElement">
+          <InputForm
+            title="Description du Repo"
+            name="description"
+            value={newRepo.description}
+            handle={HandleAddRepo}
+          />
+        </div>
+        <div className="formElement">
+          <InputForm
+            title="URL du Repo"
+            name="url"
+            value={newRepo.url}
+            handle={HandleAddRepo}
+          />
+        </div>
+        <div className="formElement">
+          <SelectLanguagesForm
+            value={newRepo.languages[0].node.name}
+            handle={HandleAddRepo}
+          />
+        </div>
+        <div className="formElement">
+          <CheckboxForm
+            title="Privé ?"
+            name="isPrivate"
+            value={newRepo.isPrivate}
+            handle={HandleAddRepo}
+          />
+        </div>
+        <button type="submit">Ajouter</button>
+      </form>
+    </>
   );
 }
 

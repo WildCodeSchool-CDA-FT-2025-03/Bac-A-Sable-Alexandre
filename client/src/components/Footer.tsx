@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <>
-      <footer>Pied de page</footer>
+      <footer>Wild Code School © 2025</footer>
     </>
   );
 }
