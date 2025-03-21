@@ -85,6 +85,7 @@ button[type=submit] {
 
 div.formElement {
   display: flex;
+  flex-flow: row wrap;
   margin: 5px 0;
 }
 
@@ -161,12 +162,6 @@ form
   line-height: 3.1em;
 }
 
-
-
-
-
-
-
 .input-group {
   margin-bottom: 1em;
   zoom: 1;
@@ -180,18 +175,6 @@ form
 }
 .input-group:after {
   clear: both;
-}
-
-.input-group-icon input {
-  padding-left: 4.4em;
-}
-
-.input-group-icon .input-icon i {
-  -webkit-transition: 0.35s ease-in-out;
-  -moz-transition: 0.35s ease-in-out;
-  -o-transition: 0.35s ease-in-out;
-  transition: 0.35s ease-in-out;
-  transition: all 0.35s ease-in-out;
 }
 
 input[type="radio"] + label,
@@ -215,17 +198,27 @@ input[type="radio"] {
 }
 
 input[type="radio"] + label {
-  display: inline-block;
   text-align: center;
   float: right;
 }
 
-input[type="radio"] + label i {
-  padding-right: 0.4em;
-}
 input[type="radio"]:checked + label,
 input:checked + label:before {
   background-color: #f0a500;
   color: #000000;
   border-color: #bd8200;
+}
+
+.selectLanguage{
+  flex-basis:100%;
+  display:flex;
+}
+
+.buttonPlus{
+  background-color: #333333;
+  color: white;
+  padding:0px 20px;
+  font-size:0.8em;
+  height:40px;
+  text-decoration: underline;
 }

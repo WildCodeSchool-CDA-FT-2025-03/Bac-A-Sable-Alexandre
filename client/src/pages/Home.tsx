@@ -54,7 +54,7 @@ function Home() {
         <SelectForm
           name="limit"
           value={searchParams.get("limit") || "10"}
-          title="Nombre de Repos"
+          title="Nombre de Repos Affiché "
           option={["2", "3", "10"]}
           handle={HandleAllRepo}
         />
