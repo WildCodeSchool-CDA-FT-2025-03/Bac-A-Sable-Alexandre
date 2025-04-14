@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "getRepo": "gh repo list TheCPas --json id,createdAt,isPrivate,url,languages,description > ./data.json",
-    "dev": "ts-node-dev ./src/index.ts"
+    "dev": "ts-node-dev ./src/index.ts",
+    "build": "npx tsc",
+    "prod": "node ./build/index.js"
   },
   "author": "",
   "license": "ISC",
